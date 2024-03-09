@@ -50,3 +50,9 @@ class HistoricoController:
     def contar_disciplinas_nao_cursadas(aluno_id):
         disciplinas_nao_cursadas = HistoricoModel.contar_disciplinas_nao_cursadas(aluno_id)
         return HistoricoView.contar_disciplinas_nao_cursadas(disciplinas_nao_cursadas)
+
+
+    @staticmethod
+    def contar_disciplinas_que_mais_reprovam():
+        disciplinas_que_mais_reprovam = HistoricoModel.contar_disciplinas_que_mais_reprovam()
+        return HistoricoView.contar_disciplinas_que_mais_reprovam(disciplinas_que_mais_reprovam)

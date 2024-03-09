@@ -30,3 +30,5 @@ class DisciplinaController:
     def remover_disciplina(disciplina_id):
         disciplina = DisciplinaModel.remover_disciplina(disciplina_id)
         return DisciplinaView.remover_disciplina(disciplina)
+
+

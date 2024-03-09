@@ -132,3 +132,19 @@ class HistoricoModel:
             disciplinas_nao_cursadas = [dict(zip(column_names, row)) for row in response]
         return disciplinas_nao_cursadas
 
+    @staticmethod
+    def contar_disciplinas_que_mais_reprovam():
+        with engine.connect() as conn:
+            query = text('''
+                SELECT id_disciplina,
+                       COUNT(*) AS num_reprovacoes
+                FROM historico h
+                WHERE status IN (3, 4)
+                GROUP BY id_disciplina
+                ORDER BY num_reprovacoes DESC
+                LIMIT 10;
+            ''')
+            response = conn.execute(query)
+            column_names = response.keys()
+            disciplinas_cursadas = [dict(zip(column_names, row)) for row in response]
+        return disciplinas_cursadas

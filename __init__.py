@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_cors import CORS
 from controllers.aluno_controller import AlunoController
 from controllers.disciplina_controller import DisciplinaController
 from controllers.historico_controller import HistoricoController
@@ -6,6 +7,7 @@ from controllers.historico_controller import HistoricoController
 
 def create_app():
     app = Flask(__name__)
+    CORS(app)
 
     # Operação READ - Listar todos os alunos
     @app.route('/alunos', methods=['GET'])
@@ -100,7 +102,6 @@ def create_app():
     def contar_reprovacoes_disciplina(disciplina_id):
         return HistoricoController.contar_reprovacoes_disciplina(disciplina_id)
 
-
     @app.route('/historico/disciplinas-cursadas/<int:aluno_id>', methods=['GET'])
     def contar_disciplinas_cursadas(aluno_id):
         return HistoricoController.contar_disciplinas_cursadas(aluno_id)
@@ -108,5 +109,9 @@ def create_app():
     @app.route('/historico/disciplinas-nao-cursadas/<int:aluno_id>', methods=['GET'])
     def contar_disciplinas_nao_cursadas(aluno_id):
         return HistoricoController.contar_disciplinas_nao_cursadas(aluno_id)
+
+    @app.route('/historico/disciplinas-que-mais-reprovam', methods=['GET'])
+    def contar_disciplinas_que_mais_reprovam():
+        return HistoricoController.contar_disciplinas_que_mais_reprovam()
 
     return app

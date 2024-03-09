@@ -30,3 +30,5 @@ class DisciplinaView:
             return jsonify(disciplina)
         else:
             return jsonify({'message': 'Disciplina não encontrada'}), 404
+
+

@@ -43,3 +43,7 @@ class HistoricoView:
     @staticmethod
     def contar_disciplinas_nao_cursadas(disciplinas_nao_cursadas):
         return jsonify({'disciplinas_nao_cursadas': disciplinas_nao_cursadas})
+
+    @staticmethod
+    def contar_disciplinas_que_mais_reprovam(disciplinas_que_mais_reprovam):
+        return jsonify({'disciplinas_que_mais_reprovam': disciplinas_que_mais_reprovam})
