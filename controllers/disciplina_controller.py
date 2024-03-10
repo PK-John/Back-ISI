@@ -31,4 +31,7 @@ class DisciplinaController:
         disciplina = DisciplinaModel.remover_disciplina(disciplina_id)
         return DisciplinaView.remover_disciplina(disciplina)
 
-
+    @staticmethod
+    def quantidade_de_alunos_matriculados_por_cadeira(aluno_id):
+        alunos_matriculados = DisciplinaModel.quantidade_de_alunos_matriculados_por_cadeira(aluno_id)
+        return DisciplinaView.quantidade_de_alunos_matriculados_por_cadeira(alunos_matriculados)

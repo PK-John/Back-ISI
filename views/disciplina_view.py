@@ -31,4 +31,6 @@ class DisciplinaView:
         else:
             return jsonify({'message': 'Disciplina não encontrada'}), 404
 
-
+    @staticmethod
+    def quantidade_de_alunos_matriculados_por_cadeira(alunos_matriculados):
+        return jsonify({'alunos_matriculados': alunos_matriculados})

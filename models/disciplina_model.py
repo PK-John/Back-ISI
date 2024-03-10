@@ -74,3 +74,17 @@ class DisciplinaModel:
             return disciplina_dict
         else:
             return None
+
+    @staticmethod
+    def quantidade_de_alunos_matriculados_por_cadeira(disciplina_id):
+        with engine.connect() as conn:
+            query = text('''
+                            SELECT COUNT(*) AS numero_de_alunos
+                            FROM historico
+                            WHERE id_disciplina = :disciplina_id
+                            AND status = 5;
+                            ''')
+            response = conn.execute(query, {'disciplina_id': disciplina_id})
+            column_names = response.keys()
+            alunos_matriculados = [dict(zip(column_names, row)) for row in response]
+        return alunos_matriculados

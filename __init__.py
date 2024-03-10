@@ -134,4 +134,12 @@ def create_app():
     def reprovacoes_por_aluno(aluno_id):
         return AlunoController.reprovacoes_por_aluno(aluno_id)
 
+    @app.route('/disciplinas/reprovacoes_por_aluno/<int:disciplina_id>', methods=['GET'])
+    def quantidade_de_alunos_matriculados_por_cadeira(disciplina_id):
+        return DisciplinaController.quantidade_de_alunos_matriculados_por_cadeira(disciplina_id)
+
+    @app.route('/disciplinas/media_para_cada_disciplina/<int:disciplina_id>', methods=['GET'])
+    def calcular_media_para_cada_disciplina(disciplina_id):
+        return HistoricoController.calcular_media_para_cada_disciplina(disciplina_id)
+
     return app

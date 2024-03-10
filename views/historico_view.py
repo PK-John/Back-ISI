@@ -59,11 +59,6 @@ class HistoricoView:
         return jsonify(response_data)
 
     @staticmethod
-    def contar_medias_por_aluno(medias_por_aluno):
-        response_data = {'medias_por_aluno': medias_por_aluno}
-        return jsonify(response_data)
-
-    @staticmethod
     def reprovacoes_por_disciplina(reprovacoes_por_disciplina):
         response_data = {'reprovacoes_por_disciplina': reprovacoes_por_disciplina}
         return jsonify(response_data)
@@ -72,3 +67,7 @@ class HistoricoView:
     def reprovacoes_total(reprovacoes_total):
         response_data = {'reprovacoes_total': reprovacoes_total}
         return jsonify(response_data)
+
+    @staticmethod
+    def calcular_media_para_cada_disciplina(media_para_cada_disciplina):
+        return jsonify({'media_para_cada_disciplina': media_para_cada_disciplina})

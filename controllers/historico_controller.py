@@ -76,3 +76,8 @@ class HistoricoController:
     def reprovacoes_total():
         reprovacoes_total = HistoricoModel.reprovacoes_total()
         return HistoricoView.reprovacoes_total(reprovacoes_total)
+
+    @staticmethod
+    def calcular_media_para_cada_disciplina(disciplina_id):
+        media_para_cada_disciplina = HistoricoModel.calcular_media_para_cada_disciplina(disciplina_id)
+        return HistoricoView.calcular_media_para_cada_disciplina(media_para_cada_disciplina)

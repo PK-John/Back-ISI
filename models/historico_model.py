@@ -203,3 +203,12 @@ class HistoricoModel:
             column_names = response.keys()
             reprovacoes_total = [dict(zip(column_names, row)) for row in response]
         return reprovacoes_total
+
+    @staticmethod
+    def calcular_media_para_cada_disciplina(disciplina_id):
+        with engine.connect() as conn:
+            query = text('SELECT ROUND(AVG(nota), 1) AS media FROM historico WHERE id_disciplina = :disciplina_id;')
+            response = conn.execute(query, {'disciplina_id': disciplina_id})
+            column_names = response.keys()
+            media_para_cada_disciplina = [dict(zip(column_names, row)) for row in response]
+        return media_para_cada_disciplina
