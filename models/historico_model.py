@@ -102,7 +102,7 @@ class HistoricoModel:
     def contar_reprovacoes_disciplina(disciplina_id):
         with engine.connect() as conn:
             query = text('SELECT COUNT(*) AS num_reprovacoes FROM historico '
-                         'WHERE id_disciplina = :disciplina_id AND status = 2;')
+                         'WHERE id_disciplina = :disciplina_id AND status IN(3, 4)')
             response = conn.execute(query, {'disciplina_id': disciplina_id})
             num_reprovacoes = response.scalar()
         return num_reprovacoes
@@ -148,3 +148,58 @@ class HistoricoModel:
             column_names = response.keys()
             disciplinas_cursadas = [dict(zip(column_names, row)) for row in response]
         return disciplinas_cursadas
+
+    @staticmethod
+    def contar_medias_por_aluno(aluno_id):
+        with engine.connect() as conn:
+            query = text('''
+                        SELECT a.nome AS nome_aluno, h.id_disciplina, AVG(h.nota) AS media_nota
+                        FROM historico h
+                        INNER JOIN aluno a ON h.id_aluno = a.id
+                        GROUP BY a.id, a.nome, h.id_disciplina;
+                        ''')
+            response = conn.execute(query, {'aluno_id': aluno_id})
+            column_names = response.keys()
+            medias_por_aluno = [dict(zip(column_names, row)) for row in response]
+        return medias_por_aluno
+
+    @staticmethod
+    def media_geral():
+        with engine.connect() as conn:
+            query = text('''
+                            SELECT AVG(nota) AS media_geral
+                            FROM historico;
+                            ''')
+            response = conn.execute(query)
+            column_names = response.keys()
+            media_geral = [dict(zip(column_names, row)) for row in response]
+        return media_geral
+
+    @staticmethod
+    def reprovacoes_por_disciplina():
+        with engine.connect() as conn:
+            query = text('''
+                            SELECT d.nome AS disciplina,
+                            COUNT(*) AS numero_reprovacoes
+                            FROM historico h
+                            JOIN disciplina d ON h.id_disciplina = d.id
+                            WHERE h.status IN (3, 4)
+                            GROUP BY d.nome;
+                            ''')
+            response = conn.execute(query)
+            column_names = response.keys()
+            reprovacoes_por_disciplina = [dict(zip(column_names, row)) for row in response]
+        return reprovacoes_por_disciplina
+
+    @staticmethod
+    def reprovacoes_total():
+        with engine.connect() as conn:
+            query = text('''
+                            SELECT COUNT(*) AS total_reprovacoes
+                            FROM historico
+                            WHERE status IN (3, 4)
+                        ''')
+            response = conn.execute(query)
+            column_names = response.keys()
+            reprovacoes_total = [dict(zip(column_names, row)) for row in response]
+        return reprovacoes_total

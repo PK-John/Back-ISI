@@ -41,3 +41,8 @@ class AlunoController:
     def listar_alunos_formacao_periodo_certo():
         alunos_formacao_periodo_certo = AlunoModel.listar_alunos_formacao_periodo_certo()
         return AlunoView.listar_alunos(alunos_formacao_periodo_certo)
+
+    @staticmethod
+    def reprovacoes_por_aluno(aluno_id):
+        reprovacoes_por_aluno = AlunoModel.reprovacoes_por_aluno(aluno_id)
+        return AlunoView.reprovacoes_por_aluno(reprovacoes_por_aluno)

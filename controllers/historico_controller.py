@@ -56,3 +56,23 @@ class HistoricoController:
     def contar_disciplinas_que_mais_reprovam():
         disciplinas_que_mais_reprovam = HistoricoModel.contar_disciplinas_que_mais_reprovam()
         return HistoricoView.contar_disciplinas_que_mais_reprovam(disciplinas_que_mais_reprovam)
+
+    @staticmethod
+    def contar_medias_por_aluno(aluno_id):
+        medias_por_aluno = HistoricoModel.contar_medias_por_aluno(aluno_id)
+        return HistoricoView.contar_medias_por_aluno(medias_por_aluno)
+
+    @staticmethod
+    def media_geral():
+        media_geral = HistoricoModel.media_geral()
+        return HistoricoView.media_geral(media_geral)
+
+    @staticmethod
+    def reprovacoes_por_disciplina():
+        reprovacoes_por_disciplina = HistoricoModel.reprovacoes_por_disciplina()
+        return HistoricoView.reprovacoes_por_disciplina(reprovacoes_por_disciplina)
+
+    @staticmethod
+    def reprovacoes_total():
+        reprovacoes_total = HistoricoModel.reprovacoes_total()
+        return HistoricoView.reprovacoes_total(reprovacoes_total)

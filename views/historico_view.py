@@ -47,3 +47,28 @@ class HistoricoView:
     @staticmethod
     def contar_disciplinas_que_mais_reprovam(disciplinas_que_mais_reprovam):
         return jsonify({'disciplinas_que_mais_reprovam': disciplinas_que_mais_reprovam})
+
+    @staticmethod
+    def contar_medias_por_aluno(medias_por_aluno):
+        response_data = {'medias_por_aluno': medias_por_aluno}
+        return jsonify(response_data)
+
+    @staticmethod
+    def media_geral(media_geral):
+        response_data = {'media_geral_disciplinas': media_geral}
+        return jsonify(response_data)
+
+    @staticmethod
+    def contar_medias_por_aluno(medias_por_aluno):
+        response_data = {'medias_por_aluno': medias_por_aluno}
+        return jsonify(response_data)
+
+    @staticmethod
+    def reprovacoes_por_disciplina(reprovacoes_por_disciplina):
+        response_data = {'reprovacoes_por_disciplina': reprovacoes_por_disciplina}
+        return jsonify(response_data)
+
+    @staticmethod
+    def reprovacoes_total(reprovacoes_total):
+        response_data = {'reprovacoes_total': reprovacoes_total}
+        return jsonify(response_data)

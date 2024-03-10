@@ -97,3 +97,19 @@ class AlunoModel:
             column_names = response.keys()
             alunos_formacao_periodo_certo = [dict(zip(column_names, row)) for row in response]
         return alunos_formacao_periodo_certo
+
+    @staticmethod
+    def reprovacoes_por_aluno(aluno_id):
+        with engine.connect() as conn:
+            query = text('''
+                            SELECT a.nome AS aluno,
+                            COUNT(*) AS numero_reprovacoes
+                            FROM historico h
+                            JOIN aluno a ON h.id_aluno = a.id
+                            WHERE h.status IN (3, 4)
+                            GROUP BY a.nome, h.id_aluno;
+                            ''')
+            response = conn.execute(query, {'aluno_id': aluno_id})
+            column_names = response.keys()
+            reprovacoes_por_aluno = [dict(zip(column_names, row)) for row in response]
+        return reprovacoes_por_aluno

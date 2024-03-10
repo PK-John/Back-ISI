@@ -38,3 +38,7 @@ class AlunoView:
     @staticmethod
     def listar_alunos_formacao_periodo_certo(alunos):
         return jsonify(alunos)
+
+    @staticmethod
+    def reprovacoes_por_aluno(reprovacoes_por_aluno):
+        return jsonify({'reprovacoes_por_aluno': reprovacoes_por_aluno})

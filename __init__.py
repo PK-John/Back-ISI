@@ -114,4 +114,24 @@ def create_app():
     def contar_disciplinas_que_mais_reprovam():
         return HistoricoController.contar_disciplinas_que_mais_reprovam()
 
+    @app.route('/historico/media-por-aluno/<int:aluno_id>', methods=['GET'])
+    def contar_medias_por_aluno(aluno_id):
+        return HistoricoController.contar_medias_por_aluno(aluno_id)
+
+    @app.route('/historico/media_geral', methods=['GET'])
+    def media_geral():
+        return HistoricoController.media_geral()
+
+    @app.route('/historico/reprovacoes_por_disciplina', methods=['GET'])
+    def reprovacoes_por_disciplina():
+        return HistoricoController.reprovacoes_por_disciplina()
+
+    @app.route('/historico/reprovacoes_total', methods=['GET'])
+    def reprovacoes_total():
+        return HistoricoController.reprovacoes_total()
+
+    @app.route('/aluno/reprovacoes_por_aluno/<int:aluno_id>', methods=['GET'])
+    def reprovacoes_por_aluno(aluno_id):
+        return AlunoController.reprovacoes_por_aluno(aluno_id)
+
     return app
